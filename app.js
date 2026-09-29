@@ -20,6 +20,16 @@ let idConta = 1;
 let idCategoria = 1;
 let idLancamento = 1;
 
+function identificarUsuario(req, res, next) {
+  const id = parseInt(req.headers['x-user-id']);
+  const usuario = usuarios.find(u => u.id === id);
+  if (!usuario) {
+    return res.status(400).json({ erro: 'Envie o header x-user-id com um usuário válido' });
+  }
+  req.usuario = usuario;
+  next();
+}
+
 app.get('/', (req, res) => {
   res.send('API de Controle Financeiro no ar');
 });
