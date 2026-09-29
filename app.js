@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('API de Controle Financeiro no ar');
