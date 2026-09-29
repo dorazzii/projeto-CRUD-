@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/dorazzii/projeto-CRUD-/issues"
   },
-  "homepage": "https://github.com/dorazzii/projeto-CRUD-#readme"
+  "homepage": "https://github.com/dorazzii/projeto-CRUD-#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
