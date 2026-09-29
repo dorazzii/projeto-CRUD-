@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
   res.send('API de Controle Financeiro no ar');
 });
 
+app.use((req, res) => {
+  res.status(404).json({ erro: 'Rota não encontrada' });
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
