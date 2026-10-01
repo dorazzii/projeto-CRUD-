@@ -1,6 +1,7 @@
 import express from 'express';
 import { logger } from './middlewares/logger.js';
 import usuariosRoutes from './routes/usuariosRoutes.js';
+import categoriasRoutes from './routes/categoriasRoutes.js';
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/usuarios', usuariosRoutes);
+app.use('/categorias', categoriasRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ erro: 'Rota não encontrada' });
