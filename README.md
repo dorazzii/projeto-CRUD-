@@ -85,3 +85,9 @@ Todas as rotas de categorias exigem o header `x-user-id` e só enxergam as categ
     Resposta 200: { "mensagem": "Categoria removida" }
     Erro 400: { "erro": "A categoria possui lançamentos e não pode ser removida" }
 
+### Resumo mensal
+
+**GET /resumo?mes=2026-09** retorna o resumo do mês. Exige o header `x-user-id`.
+
+    Resposta 200: { "mes": "2026-09", "receitas": 1000, "despesas": 300, "reservado": 700, "percentualReservado": 70, "despesasPorCategoria": { "Lazer": 100, "Mercado": 200 } }
+    Erro 400: { "erro": "Informe mes no formato AAAA-MM" }
