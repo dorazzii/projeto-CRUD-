@@ -91,3 +91,28 @@ Todas as rotas de categorias exigem o header `x-user-id` e só enxergam as categ
 
     Resposta 200: { "mes": "2026-09", "receitas": 1000, "despesas": 300, "reservado": 700, "percentualReservado": 70, "despesasPorCategoria": { "Lazer": 100, "Mercado": 200 } }
     Erro 400: { "erro": "Informe mes no formato AAAA-MM" }
+
+    ### Contas
+    Todas as rotas de contas exigem o header `x-user-id`. Cada usuário só enxerga as próprias contas.
+
+**POST /contas** cria uma conta.
+
+    Corpo: { "nome": "Carteira", "saldoInicial": 100 }
+    Resposta 201: { "id": 1, "usuarioId": 1, "nome": "Carteira", "saldoInicial": 100 }
+    Erro 400: { "erro": "nome é obrigatório" }
+
+**GET /contas** lista as contas. **GET /contas/:id** busca uma conta (404 se não existir). **PUT /contas/:id** atualiza nome e/ou saldoInicial.
+
+**DELETE /contas/:id** remove a conta, desde que não tenha lançamentos.
+
+    Resposta 200: { "mensagem": "Conta removida" }
+    Erro 400: { "erro": "A conta possui lançamentos e não pode ser removida" }
+
+**GET /contas/:id/saldo** retorna o saldo: saldo inicial mais receitas menos despesas.
+
+    Resposta 200: { "contaId": 1, "saldo": 320 }
+
+**GET /contas/:id/extrato?de=2026-09-01&ate=2026-09-30** lista os lançamentos da conta no período.
+
+    Resposta 200: { "contaId": 1, "de": "2026-09-01", "ate": "2026-09-30", "lancamentos": [ ... ] }
+    Erro 400: { "erro": "Informe de e ate no formato AAAA-MM-DD" }
