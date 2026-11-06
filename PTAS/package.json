@@ -1,11 +1,17 @@
 {
-  "name": "projeto-crud-",
+  "name": "projeto-CRUD-",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "dev": "node --watch src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:up": "docker start projeto-CRUD- || docker run -d --name projeto-CRUD- -p 127.0.0.1:27017:27017 -v projeto-CRUD--data:/data/db mongo:8",
+    "db:down": "docker stop projeto-CRUD-",
+    "db:logs": "docker logs -f projeto-CRUD-",
+    "db:reset": "docker rm -f projeto-CRUD-; docker volume rm projeto-CRUD--data",
+    "predev": "npm run db:up",
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",
